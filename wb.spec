@@ -10,6 +10,8 @@ Source0:	http://groups.csail.mit.edu/mac/ftpdir/scm/%{name}-%{version}.zip
 Patch0:		%{name}-info.patch
 URL:		http://people.csail.mit.edu/jaffer/JACAL
 BuildRequires:	mono-csharp
+BuildRequires:	scm
+BuildRequires:	scm-slib
 BuildRequires:	texinfo
 Requires(post,postun):	/sbin/ldconfig
 Requires:	scm
