@@ -1,14 +1,14 @@
 Summary:	WB - disk based (sorted) associative array package
 Summary(pl.UTF-8):	WB - pakiet tablic asocjacyjnych przechowujących (posortowane) dane na dysku
 Name:		wb
-Version:	2b2
+Version:	2b3
 Release:	1
 License:	LGPL v3+
 Group:		Libraries
 Source0:	http://groups.csail.mit.edu/mac/ftpdir/scm/%{name}-%{version}.zip
-# Source0-md5:	d8b63b324ccad18600f5b5ae40c5f4ff
+# Source0-md5:	1994300b100bfd610adf1e18fb7019ec
 Patch0:		%{name}-info.patch
-URL:		http://people.csail.mit.edu/jaffer/JACAL
+URL:		http://people.csail.mit.edu/jaffer/WB
 BuildRequires:	mono-csharp
 BuildRequires:	scm
 BuildRequires:	scm-slib
