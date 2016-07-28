@@ -1,3 +1,13 @@
+#
+# Conditional build:
+%bcond_without	dotnet	# C# package
+#
+%ifnarch %{ix86} %{x8664} arm aarch64 ia64 mips ppc ppc64 s390x sparc sparcv9 sparc64
+%undefine	with_dotnet
+%endif
+%ifarch i386
+%undefine	with_dotnet
+%endif
 Summary:	WB - disk based (sorted) associative array package
 Summary(pl.UTF-8):	WB - pakiet tablic asocjacyjnych przechowujących (posortowane) dane na dysku
 Name:		wb
@@ -9,7 +19,7 @@ Source0:	http://groups.csail.mit.edu/mac/ftpdir/scm/%{name}-%{version}.zip
 # Source0-md5:	1994300b100bfd610adf1e18fb7019ec
 Patch0:		%{name}-info.patch
 URL:		http://people.csail.mit.edu/jaffer/WB
-BuildRequires:	mono-csharp
+%{?with_dotnet:BuildRequires:	mono-csharp}
 BuildRequires:	scm
 BuildRequires:	scm-slib
 BuildRequires:	texinfo
@@ -99,7 +109,9 @@ Biblioteka WB dla Javy.
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -fPIC"
 
+%if %{with dotnet}
 %{__make} -C csharp
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -142,10 +154,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/wb/libwb.a
 %{_libdir}/libwb.a
 
+%if %{with dotnet}
 %files -n dotnet-wb
 %defattr(644,root,root,755)
 %{_libdir}/wb/Wb.dll
 %{_libdir}/Wb.dll
+%endif
 
 %files -n java-wb
 %defattr(644,root,root,755)
