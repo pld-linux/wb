@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	dotnet	# C# package
+%bcond_without	java	# Java package
 #
 %ifnarch %{ix86} %{x8664} arm aarch64 ia64 mips ppc ppc64 s390x sparc sparcv9 sparc64
 %undefine	with_dotnet
@@ -116,7 +117,7 @@ Biblioteka WB dla Javy.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} installc install-info %{?with_dotnet:installdll} %{?with_java:installjar} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # let rpm autogenerate dependencies
@@ -161,6 +162,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/Wb.dll
 %endif
 
+%if %{with java}
 %files -n java-wb
 %defattr(644,root,root,755)
 %{_javadir}/wb.jar
+%endif
