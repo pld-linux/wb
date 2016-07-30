@@ -112,7 +112,18 @@ Biblioteka WB dla Javy.
 
 %if %{with dotnet}
 %{__make} -C csharp
+%else
+# needed for info part
+%{__make} csharp/Wb.cs
 %endif
+
+%if %{with java}
+%{__make} java/wb.jar
+%else
+%{__make} java/wb/Scan.txi java/wb/Db.txi java/wb/Handle.txi java/wb/Segs.txi java/wb/Wbdefs.txi
+%endif
+
+%{__make} wb.info
 
 %install
 rm -rf $RPM_BUILD_ROOT
