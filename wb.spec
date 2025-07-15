@@ -98,7 +98,7 @@ Biblioteka WB dla Javy.
 
 %prep
 %setup -q -n wb
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 # not autoconf-generated
